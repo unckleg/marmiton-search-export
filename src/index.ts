@@ -1,7 +1,7 @@
-"phantombuster command: nodejs"
-"phantombuster package: 5"
+'phantombuster command: nodejs';
+'phantombuster package: 5';
 
-;(async () => {
-  console.log("Hello from the ether side!")
-  process.exit()
-})()
+(async () => {
+  console.log('Hello from the ether side!');
+  process.exit();
+})();
