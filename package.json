@@ -11,7 +11,8 @@
     "test:one": "jest --t",
     "test:package": "jest -i --testRegex",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "type-check": "tsc --skipLibCheck --project tsconfig.json --pretty --noEmit"
   },
   "keywords": [],
   "author": "Djordje Stojiljkovic <djordjestojilljkovic@gmail.com>",
@@ -22,6 +23,7 @@
     "typescript": "^3.9.6",
     "@typescript-eslint/eslint-plugin": "5.23.0",
     "@typescript-eslint/parser": "5.23.0",
+    "eslint-plugin-no-relative-import-paths": "^1.4.0",
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
