@@ -1,0 +1,21 @@
+name: Unit Tests via Jest
+on: push
+jobs:
+  run-jest:
+    name: jest
+    runs-on: ubuntu-latest
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.0
+      - name: npm-install
+        run: npm i -D
+      - name: jest-clear-cache
+        working-directory: ./
+        run: npx jest --clear-cache
+      - name: run-jest
+        working-directory: ./
+        run: npx jest --maxWorkers=2 --forceExit
