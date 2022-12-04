@@ -1,0 +1,6 @@
+[
+    name: 'Marmiton Search Export'
+    apiKey: 'YOUR_API_KEY_HERE'
+    scripts:
+        'marmitonSearchExport.js': 'dist/index.js'
+]
