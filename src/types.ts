@@ -11,4 +11,4 @@ export type Recipe = {
 export type InputArgs = {
   inputQuery?: string;
   numberOfPagesToScrape?: number;
-}
+};

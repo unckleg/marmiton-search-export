@@ -48,22 +48,27 @@ export default class Marmiton {
   async scrape(page: Page): Promise<Recipe[]> {
     // Do initial page scraping and get results
     let response: Recipe[] = [];
-    response = await page.evaluate((inBaseURL, recipeContainerSelector, recipeNumberOfReviewsSelector) => {
-      const data: Recipe[] = [];
-      const recipesChildNodes = document.querySelector(recipeContainerSelector)?.childNodes[2];
-      const recipes = recipesChildNodes?.childNodes;
-      recipes?.forEach((element: any) => {
-        const spanElement = element.getElementsByTagName('span');
-        const numberOfReviews = element.getElementsByClassName(recipeNumberOfReviewsSelector);
-        data.push({
-          rating: spanElement.length > 0 ? element.getElementsByTagName('span')[0].textContent : '',
-          numberOfReviews: numberOfReviews.length > 0 ? numberOfReviews[0].textContent.replace(/\D/g, '') : '',
-          name: element.getElementsByTagName('h4')[0].textContent,
-          url: `${inBaseURL}${element.getAttribute('href')}`,
+    response = await page.evaluate(
+      (inBaseURL, recipeContainerSelector, recipeNumberOfReviewsSelector) => {
+        const data: Recipe[] = [];
+        const recipesChildNodes = document.querySelector(recipeContainerSelector)?.childNodes[2];
+        const recipes = recipesChildNodes?.childNodes;
+        recipes?.forEach((element: any) => {
+          const spanElement = element.getElementsByTagName('span');
+          const numberOfReviews = element.getElementsByClassName(recipeNumberOfReviewsSelector);
+          data.push({
+            rating: spanElement.length > 0 ? element.getElementsByTagName('span')[0].textContent : '',
+            numberOfReviews: numberOfReviews.length > 0 ? numberOfReviews[0].textContent.replace(/\D/g, '') : '',
+            name: element.getElementsByTagName('h4')[0].textContent,
+            url: `${inBaseURL}${element.getAttribute('href')}`,
+          });
         });
-      });
-      return data;
-    }, this.baseURL, this.recipeContainerSelector, this.recipeNumberOfReviewsSelector);
+        return data;
+      },
+      this.baseURL,
+      this.recipeContainerSelector,
+      this.recipeNumberOfReviewsSelector,
+    );
 
     if (this.numberOfPagesToScrape > 1) {
       await page.waitForSelector('.SHRD__sc-dvq2vt-1, .hWQlXg');
@@ -83,26 +88,31 @@ export default class Marmiton {
 
         await page.waitForSelector(this.recipeContainerSelector);
         response = response.concat(
-          await page.evaluate((inBaseURL, recipeContainerSelector, recipeNumberOfReviewsSelector) => {
-            const data: Recipe[] = [];
-            const recipesChildNodes = document.querySelector(recipeContainerSelector)?.childNodes[2];
-            const recipes = recipesChildNodes?.childNodes;
-            if (!recipes || recipes.length <= 0) {
-              return data;
-            }
+          await page.evaluate(
+            (inBaseURL, recipeContainerSelector, recipeNumberOfReviewsSelector) => {
+              const data: Recipe[] = [];
+              const recipesChildNodes = document.querySelector(recipeContainerSelector)?.childNodes[2];
+              const recipes = recipesChildNodes?.childNodes;
+              if (!recipes || recipes.length <= 0) {
+                return data;
+              }
 
-            recipes?.forEach((element: any) => {
-              const spanElement = element.getElementsByTagName('span');
-              const numberOfReviews = element.getElementsByClassName(recipeNumberOfReviewsSelector);
-              data.push({
-                rating: spanElement.length > 0 ? element.getElementsByTagName('span')[0].textContent : '',
-                numberOfReviews: numberOfReviews.length > 0 ? numberOfReviews[0].textContent.replace(/\D/g, '') : '',
-                name: element.getElementsByTagName('h4')[0].textContent,
-                url: `${inBaseURL}${element.getAttribute('href')}`,
+              recipes?.forEach((element: any) => {
+                const spanElement = element.getElementsByTagName('span');
+                const numberOfReviews = element.getElementsByClassName(recipeNumberOfReviewsSelector);
+                data.push({
+                  rating: spanElement.length > 0 ? element.getElementsByTagName('span')[0].textContent : '',
+                  numberOfReviews: numberOfReviews.length > 0 ? numberOfReviews[0].textContent.replace(/\D/g, '') : '',
+                  name: element.getElementsByTagName('h4')[0].textContent,
+                  url: `${inBaseURL}${element.getAttribute('href')}`,
+                });
               });
-            });
-            return data;
-          }, this.baseURL, this.recipeContainerSelector, this.recipeNumberOfReviewsSelector),
+              return data;
+            },
+            this.baseURL,
+            this.recipeContainerSelector,
+            this.recipeNumberOfReviewsSelector,
+          ),
         );
       }
     }

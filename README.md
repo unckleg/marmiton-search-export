@@ -1,2 +1,12 @@
-# phantom-marmiton-search-export
-Phantom - Marmiton Search Export Script
+Table of contents
+=================
+
+<!--ts-->
+* [Prerequisites](#prerequisites)
+    * [Node](#node)
+    * [NPM](#npm)
+* [Development](#development)
+* [Running Scraper](#running)
+    * [Locally/CLI](#locally)
+    * [On PhantomBuster](#onbuster)
+<!--te-->
