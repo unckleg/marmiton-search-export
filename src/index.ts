@@ -23,7 +23,7 @@ export const run: Runner = async (buster: Buster, marmiton: Marmiton): Promise<v
   const resultObject: Recipe[] = await marmiton.scrape(page);
   await buster.setResultObject(resultObject);
 
-  // Close page and exit process
+  // Close page/browser and exit process
   await marmiton.done(page);
 };
 
