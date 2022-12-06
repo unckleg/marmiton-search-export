@@ -1,4 +1,5 @@
 import Buster from 'phantombuster';
+
 import Marmiton from './marmiton';
 
 export type Runner = (buster: Buster, marmiton: Marmiton) => Promise<void>;

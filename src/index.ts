@@ -3,8 +3,9 @@
 
 import Buster from 'phantombuster';
 import puppeteer from 'puppeteer';
-import { Runner, Recipe } from './types';
+
 import Marmiton from './marmiton';
+import { Recipe, Runner } from './types';
 
 export const run: Runner = async (buster: Buster, marmiton: Marmiton): Promise<void> => {
   try {
@@ -12,7 +13,7 @@ export const run: Runner = async (buster: Buster, marmiton: Marmiton): Promise<v
     const args = buster.argument;
     await marmiton.populateAndValidateArgs(args);
   } catch (err) {
-    console.error(`No arguments or schema validation failed: ${err}`);
+    console.error(`No arguments or schema validation failed: ${err}`); // eslint-disable-line no-console
     process.exit(1);
   }
 

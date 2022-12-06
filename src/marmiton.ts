@@ -1,6 +1,7 @@
 import { Browser, Page } from 'puppeteer';
 import * as yup from 'yup';
-import { Recipe, InputArgs } from './types';
+
+import { InputArgs, Recipe } from './types';
 
 export default class Marmiton {
   protected baseURL = 'https://www.marmiton.org';
@@ -74,7 +75,13 @@ export default class Marmiton {
       await page.waitForSelector('.SHRD__sc-dvq2vt-1, .hWQlXg');
       const paginationNodes = await page.evaluate((): string[] => {
         const t = Array.prototype.slice.call(document.getElementsByClassName('SHRD__sc-dvq2vt-1 hWQlXg')[0].children);
-        return (t || []).map((item: HTMLAnchorElement) => item.getAttribute('href') || item.href).filter((x) => x);
+        return (t || [])
+          .map((item: HTMLAnchorElement) => {
+            return item.getAttribute('href') || item.href;
+          })
+          .filter((x) => {
+            return x;
+          });
       });
 
       if (paginationNodes.length <= 0) {
@@ -120,7 +127,9 @@ export default class Marmiton {
     return response;
   }
 
-  async filter(): Promise<void> {}
+  async filter(): Promise<void> {
+    console.log('Filtering'); // eslint-disable-line no-console
+  }
 
   async done(page: Page): Promise<void> {
     await page.close();
