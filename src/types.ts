@@ -13,3 +13,8 @@ export type InputArgs = {
   inputQuery?: string;
   numberOfPagesToScrape?: number;
 };
+
+export type PhantomBuster = {
+  argument: Record<string, any>;
+  setResultObject(object: object): Promise<void>;
+};

@@ -1,13 +1,13 @@
 'phantombuster command: nodejs';
 'phantombuster package: 5';
 
-import Buster from 'phantombuster';
 import puppeteer from 'puppeteer';
 
 import Marmiton from './marmiton';
-import { Recipe, Runner } from './types';
+import { PhantomBuster, Recipe, Runner } from './types';
 
-export const run: Runner = async (buster: Buster, marmiton: Marmiton): Promise<void> => {
+const isCLI = require.main === module;
+export const run: Runner = async (buster: PhantomBuster, marmiton: Marmiton): Promise<void> => {
   try {
     // Do arg populating and validation
     const args = buster.argument;
@@ -30,6 +30,7 @@ export const run: Runner = async (buster: Buster, marmiton: Marmiton): Promise<v
 
 // Higher level IoC dependencies will allow us to inject them
 // in our unit tests later and test code properly.
+const Buster = !isCLI ? require('phantombuster') : require('./phantombuster-cli').default; // eslint-disable-line @typescript-eslint/no-var-requires
 (async () => {
   run(
     new Buster(),

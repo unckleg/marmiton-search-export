@@ -54,11 +54,18 @@ There are few different options to run a scraper and get your results.
 CLI
 -----
 ```bash
-node dist/index.js -q "Carte blanche" -n 3
+node dist/index.js -q "Carte blanche" -n 3 -e true
 
 option('-q, --inputQuery <value>', 'Recipe query to search for.')
 option('-n, --numberOfPagesToScrape <value>', 'Number of pages to scrape.')
+option('-e, --exportToJSONFile <true/false>', '[Optional] Export results to json instead stdout to CLI.')
 ```
+
+After execution from CLI you will have results exported in stdout or results.json in your root directory.
+
+<video controls>
+  <source src="assets/cli.mov">
+</video>
 
 PhantomBuster
 -----
