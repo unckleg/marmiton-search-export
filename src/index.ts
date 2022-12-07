@@ -5,8 +5,9 @@ import puppeteer from 'puppeteer';
 
 import Marmiton from './marmiton';
 import { PhantomBuster, Recipe, Runner } from './types';
+import isInDocker from './util';
 
-const isCLI = require.main === module;
+const isCLI = require.main === module && !isInDocker();
 export const run: Runner = async (buster: PhantomBuster, marmiton: Marmiton): Promise<void> => {
   try {
     // Do arg populating and validation
@@ -29,7 +30,7 @@ export const run: Runner = async (buster: PhantomBuster, marmiton: Marmiton): Pr
 };
 
 // Higher level IoC dependencies will allow us to inject them
-// in our unit tests later and test code properly.
+// in our e2e tests later and test code properly.
 const Buster = !isCLI ? require('phantombuster') : require('./phantombuster-cli').default; // eslint-disable-line @typescript-eslint/no-var-requires
 (async () => {
   run(

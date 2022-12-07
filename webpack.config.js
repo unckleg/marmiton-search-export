@@ -21,7 +21,7 @@ module.exports = {
     filename:  "index.js"
   },
   mode: 'development',
-  optimization:{
+  optimization: {
     minimize:  false,
   },
   devtool: 'source-map',
@@ -29,6 +29,7 @@ module.exports = {
     phantombuster:  "commonjs2 phantombuster",
     bufferutil: "bufferutil",
     "utf-8-validate": "utf-8-validate",
-    puppeteer: 'require("puppeteer")'
+    puppeteer: 'require("puppeteer")',
+    commander: 'require("commander")'
   },
 }

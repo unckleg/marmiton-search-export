@@ -58,7 +58,7 @@ node dist/index.js -q "Carte blanche" -n 3 -e true
 
 option('-q, --inputQuery <value>', 'Recipe query to search for.')
 option('-n, --numberOfPagesToScrape <value>', 'Number of pages to scrape.')
-option('-e, --exportToJSONFile <true/false>', '[Optional] Export results to json instead stdout to CLI.')
+option('-e, --exportToJSONFile <true/false>', '[Optional] Export results.')
 ```
 
 After execution from CLI you will have results exported in stdout or results.json in your root directory.
@@ -67,6 +67,12 @@ https://user-images.githubusercontent.com/10105499/206117829-d3eb6d5d-5ad7-48e0-
 
 PhantomBuster
 -----
+**NOTE**: Don't forget to add Input Query (as JSON object) on PhantomBuster Script Setup step so ```buster.argument``` can pick it up once script being invoked.
+
+Name | Required  | Type       | Description
+--- |-----------|------------| ---
+*inputQuery* | **true**  | **String** | Recipe query to search for on Marmiton.org
+*numberOfPagesToScrape* | **false** | **Number** | Number of pages to scrape if there are.
 ```bash
 phantombuster dist/index.js
 ```
