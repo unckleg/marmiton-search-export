@@ -63,8 +63,10 @@ option('-e, --exportToJSONFile <true/false>', '[Optional] Export results to json
 
 After execution from CLI you will have results exported in stdout or results.json in your root directory.
 
-<video controls>
-  <source src="assets/cli.mov">
+![](assets/cli.mov)
+
+<video width="320" height="240" controls>
+  <source src="assets/cli.mov" type="video/mp4">
 </video>
 
 PhantomBuster
