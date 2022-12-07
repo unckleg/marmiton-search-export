@@ -10,16 +10,16 @@ Table of contents
     * [Node/NPM](#node)
 * [Development](#development)
 * [Running Scraper](#running)
-    * [CLI](#locally)
+    * [CLI](#cli)
     * [REST](#rest)
-    * [On PhantomBuster](#onbuster)
+    * [On PhantomBuster](#phantombuster)
 <!--te-->
 
 Prerequisites
 ============
 Here is a list of prerequisites you should need for running and making changes to the codebase.
 
-Node/NPM
+Node
 -----
 Install Node runtime on your system:
 - https://nodejs.org/en/download/
@@ -44,7 +44,7 @@ or
 npm run watch
 ```
 
-Running Scraper
+Running
 ============
 There are few different options to run a scraper and get your results.
 1. Through your Command Line
@@ -63,11 +63,7 @@ option('-e, --exportToJSONFile <true/false>', '[Optional] Export results to json
 
 After execution from CLI you will have results exported in stdout or results.json in your root directory.
 
-![](assets/cli.mov)
-
-<video width="320" height="240" controls>
-  <source src="assets/cli.mov" type="video/mp4">
-</video>
+https://user-images.githubusercontent.com/10105499/206117829-d3eb6d5d-5ad7-48e0-887f-4cee7a59255c.mov
 
 PhantomBuster
 -----
